@@ -1,6 +1,7 @@
 import {useState} from "react"
 import axios from "axios"
 import {useNavigate} from "react-router-dom"
+import {toast} from 'react-toastify';
 
 const CreatePage = () => {
 
@@ -21,12 +22,13 @@ const CreatePage = () => {
 		try{
 			setIsloading(true)
 			const response = await axios.post("https://node-api-xts8.onrender.com/api/products",{name: name, quantity: quantity, price: price, image: image})
-			alert(`Save ${response.data.name} sucessfuly`)
+			toast.success(`Save ${response.data.name} sucessfuly`)
 			setIsloading(false)
 			navigate("/")
 		}
 		catch(error){
 			console.log(error)
+			toast.error(error.message)
 			setIsloading(false)
 		}
 	}
