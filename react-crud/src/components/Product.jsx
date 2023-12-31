@@ -1,3 +1,4 @@
+import{Link} from "react-router-dom"
 const Product = ({product}) =>{
 	return (
 		<div className="bg-white rounded shadow-lg overflow-hidden">
@@ -6,6 +7,10 @@ const Product = ({product}) =>{
 				<h2 className="text font-semibold">{product.name}</h2>
 				<div className="text-sm">Quantity: {product.quantity}</div>
 				<div className ="text-sm"> Price ${product.price}</div>
+				<div className="mt-2 flex gap-4">
+				<Link to={`/edit`} className="inline-block w-full text-center shadow-md text-sm bg-gray-700 text-white rounded-sm px-4 py-1 font-bolc hover:bg-gray-600 hover:cursor-pointer">Edit</Link>
+				<Link to={`/edit`} className="inline-block w-full text-center shadow-md text-sm bg-red-700 text-white rounded-sm px-4 py-1 font-bolc hover:bg-red-600 hover:cursor-pointer">Delete</Link>
+				</div>
 			</div>
 		</div>
 	)
