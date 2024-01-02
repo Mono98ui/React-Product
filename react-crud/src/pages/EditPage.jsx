@@ -2,7 +2,7 @@ import axios from "axios"
 import {useState, useEffect} from "react"
 import {useParams} from "react-router-dom"
 import {useNavigate} from "react-router-dom"
-import {toast} from 'react-toastify';
+import {toast} from 'react-toastify'
 
 const EditPage = () => {
 	let {id} = useParams()
@@ -64,24 +64,32 @@ const EditPage = () => {
 			<h2 className="font-semibold text-2xl mb-4 block text-center">
 				Update a Product - {product.name}
 			</h2>
-			<form onSubmit={updateProduct}>
-				<div className="space-y-2">
-					<div>
-						<label>Name</label>
-						<input type="text" value={product.name} onChange={(e) =>setProduct({...product,name: e.target.value})} className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400" placeholder="Enter Name"/>
-						<label>Quatity</label>
-						<input type="number" value={product.quantity} onChange={(e) =>setProduct({...product,quantity: e.target.value})} className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400" placeholder="Enter Quantity"/>
-						<label>Price</label>
-						<input type="number" value={product.price} onChange={(e) =>setProduct({...product,price: e.target.value})} className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400" placeholder="Enter Price"/>
-						<label>Image URL</label>
-						<input type="text"  value={product.image} onChange={(e) =>setProduct({...product,image: e.target.value})} className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400" placeholder="Enter Image URL"/>
+
+			{isLoading ? ("Loading"):(
+
+				<>
+					<form onSubmit={updateProduct}>
+					<div className="space-y-2">
 						<div>
-							{!isLoading && (<button className="block w-full mt-6 bg-blue-700 text-white rounded-sm px-4 py-2 font-bold hover:bg-blue-600 hover:cursor-pointer">Update</button>)}
+							<label>Name</label>
+							<input type="text" value={product.name} onChange={(e) =>setProduct({...product,name: e.target.value})} className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400" placeholder="Enter Name"/>
+							<label>Quatity</label>
+							<input type="number" value={product.quantity} onChange={(e) =>setProduct({...product,quantity: e.target.value})} className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400" placeholder="Enter Quantity"/>
+							<label>Price</label>
+							<input type="number" value={product.price} onChange={(e) =>setProduct({...product,price: e.target.value})} className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400" placeholder="Enter Price"/>
+							<label>Image URL</label>
+							<input type="text"  value={product.image} onChange={(e) =>setProduct({...product,image: e.target.value})} className="w-full block border p-3 text-gray-600 rounded focus:outline-none focus:shadow-outline focus:border-blue-200 placeholder-gray-400" placeholder="Enter Image URL"/>
+							<div>
+								{!isLoading && (<button className="block w-full mt-6 bg-blue-700 text-white rounded-sm px-4 py-2 font-bold hover:bg-blue-600 hover:cursor-pointer">Update</button>)}
+							</div>
 						</div>
 					</div>
-				</div>
 
-			</form>
+				</form>
+				</>
+
+				)}
+
 		</div>
 	)
 }
