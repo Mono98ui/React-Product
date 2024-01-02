@@ -3,6 +3,7 @@ import {useState, useEffect} from "react"
 import {useParams} from "react-router-dom"
 import {useNavigate} from "react-router-dom"
 import {toast} from 'react-toastify'
+import{VITE_BACKEND_URL} from "../App"
 
 const EditPage = () => {
 	let {id} = useParams()
@@ -19,7 +20,7 @@ const EditPage = () => {
 		setIsloading(true)
 
 		try{
-			const response = await axios.get(`https://node-api-xts8.onrender.com/api/products/${id}`)
+			const response = await axios.get(`${VITE_BACKEND_URL}api/products/${id}`)
 		setProduct({
 			name: response.data.name,
 			quantity:response.data.quantity,
@@ -44,7 +45,7 @@ const EditPage = () => {
 
 		try{
 			setIsloading(true)
-			const response = await axios.put(`https://node-api-xts8.onrender.com/api/products/${id}`,product)
+			const response = await axios.put(`${VITE_BACKEND_URL}api/products/${id}`,product)
 			toast.success(`Updated ${response.data.name} sucessfuly`)
 			setIsloading(false)
 			navigate("/")

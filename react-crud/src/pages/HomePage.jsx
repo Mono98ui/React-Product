@@ -2,6 +2,7 @@ import {useState, useEffect} from "react"
 import{Link} from "react-router-dom"
 import axios from "axios"
 import Product from "../components/Product"
+import{VITE_BACKEND_URL} from "../App"
 
 
 const HomePage = () => {
@@ -12,7 +13,7 @@ const HomePage = () => {
 	const getProducts = async()=>{
 		try{
 			setIsLoading(true)
-			const response = await axios.get('https://node-api-xts8.onrender.com/api/products')
+			const response = await axios.get(`${VITE_BACKEND_URL}api/products`)
 			console.log(response.data)
 			setProducts(response.data)
 			setIsLoading(false)
